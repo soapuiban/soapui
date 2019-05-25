@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="91bb0955-a0c3-44e2-bb85-9d4a01cf47db" activeEnvironment="Default" name="ibn" resourceRoot="" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="23c1ace3-0506-42b9-8056-580dc1ec6d46" wsaVersion="NONE" name="IBAN_CalculatorBinding" type="wsdl" bindingName="{https://ssl.ibanrechner.de/}IBAN_CalculatorBinding" soapVersion="1_1" anonymous="optional" definition="https://ssl.ibanrechner.de/soap-12-2/index.php?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://ssl.ibanrechner.de/soap-12-2/index.php?wsdl"><con:part><con:url>https://ssl.ibanrechner.de/soap-12-2/index.php?wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="https://ssl.ibanrechner.de/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="https://ssl.ibanrechner.de/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema targetNamespace="https://ssl.ibanrechner.de/">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+      <xsd:complexType name="ArrayOfString">
+        <xsd:complexContent>
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="xsd:string[]" xmlns:wsdl1="http://schemas.xmlsoap.org/wsdl/"/>
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="BICStruct">
+        <xsd:all>
+          <xsd:element name="bic" type="xsd:string"/>
+          <xsd:element name="city" type="xsd:string"/>
+          <xsd:element name="wwwcount" type="xsd:int"/>
+          <xsd:element name="sampleurl" type="xsd:string"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="item">
+        <xsd:all>
+          <xsd:element name="key" type="xsd:string"/>
+          <xsd:element name="value" type="xsd:string"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="Map">
+        <xsd:complexContent>
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:item[]" xmlns:wsdl1="http://schemas.xmlsoap.org/wsdl/"/>
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfBICStruct">
+        <xsd:complexContent>
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:BICStruct[]" xmlns:wsdl1="http://schemas.xmlsoap.org/wsdl/"/>
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="BankStruct">
+        <xsd:all>
+          <xsd:element name="name" type="xsd:string"/>
+          <xsd:element name="bic" type="xsd:string"/>
+          <xsd:element name="bankcode" type="xsd:int"/>
+          <xsd:element name="branchcode" type="xsd:int"/>
+          <xsd:element name="country" type="xsd:string"/>
+          <xsd:element name="address" type="xsd:string"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfBankStruct">
+        <xsd:complexContent>
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:BankStruct[]" xmlns:wsdl1="http://schemas.xmlsoap.org/wsdl/"/>
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="BankResStruct">
+        <xsd:all>
+          <xsd:element name="result" type="xsd:string"/>
+          <xsd:element name="banks" type="tns:ArrayOfBankStruct"/>
+          <xsd:element name="balance" type="xsd:int"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="CountryResStruct">
+        <xsd:all>
+          <xsd:element name="result" type="xsd:string"/>
+          <xsd:element name="supported_countries" type="tns:ArrayOfString"/>
+          <xsd:element name="country_names" type="tns:ArrayOfString"/>
+          <xsd:element name="balance" type="xsd:int"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="Field">
+        <xsd:all>
+          <xsd:element name="id" type="xsd:string"/>
+          <xsd:element name="type" type="xsd:string"/>
+          <xsd:element name="value" type="xsd:string"/>
+          <xsd:element name="label" type="xsd:string"/>
+          <xsd:element name="optionids" type="tns:ArrayOfString"/>
+          <xsd:element name="options" type="tns:ArrayOfString"/>
+          <xsd:element name="length" type="xsd:int"/>
+          <xsd:element name="newline" type="xsd:string"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfField">
+        <xsd:complexContent>
+          <xsd:restriction base="SOAP-ENC:Array">
+            <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:Field[]" xmlns:wsdl1="http://schemas.xmlsoap.org/wsdl/"/>
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="Form">
+        <xsd:all>
+          <xsd:element name="done" type="xsd:string"/>
+          <xsd:element name="fields" type="tns:ArrayOfField"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="IBANValResStruct">
+        <xsd:all>
+          <xsd:element name="iban" type="xsd:string"/>
+          <xsd:element name="result" type="xsd:string"/>
+          <xsd:element name="return_code" type="xsd:string"/>
+          <xsd:element name="checks" type="tns:ArrayOfString"/>
+          <xsd:element name="bic_candidates" type="tns:ArrayOfBICStruct"/>
+          <xsd:element name="country" type="xsd:string"/>
+          <xsd:element name="bank_code" type="xsd:string"/>
+          <xsd:element name="bank" type="xsd:string"/>
+          <xsd:element name="bank_address" type="xsd:string"/>
+          <xsd:element name="bank_url" type="xsd:string"/>
+          <xsd:element name="branch" type="xsd:string"/>
+          <xsd:element name="branch_code" type="xsd:string"/>
+          <xsd:element name="in_scl_directory" type="xsd:string"/>
+          <xsd:element name="sct" type="xsd:string"/>
+          <xsd:element name="sdd" type="xsd:string"/>
+          <xsd:element name="b2b" type="xsd:string"/>
+          <xsd:element name="account_number" type="xsd:string"/>
+          <xsd:element name="account_validation_method" type="xsd:string"/>
+          <xsd:element name="account_validation" type="xsd:string"/>
+          <xsd:element name="length_check" type="xsd:string"/>
+          <xsd:element name="account_check" type="xsd:string"/>
+          <xsd:element name="bank_code_check" type="xsd:string"/>
+          <xsd:element name="iban_checksum_check" type="xsd:string"/>
+          <xsd:element name="data_age" type="xsd:string"/>
+          <xsd:element name="IBANformat" type="xsd:string"/>
+          <xsd:element name="formatcomment" type="xsd:string"/>
+          <xsd:element name="balance" type="xsd:int"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="IBANCalcResStruct">
+        <xsd:all>
+          <xsd:element name="iban" type="xsd:string"/>
+          <xsd:element name="result" type="xsd:string"/>
+          <xsd:element name="return_code" type="xsd:string"/>
+          <xsd:element name="checks" type="tns:ArrayOfString"/>
+          <xsd:element name="bic_candidates" type="tns:ArrayOfBICStruct"/>
+          <xsd:element name="country" type="xsd:string"/>
+          <xsd:element name="bank_code" type="xsd:string"/>
+          <xsd:element name="alternative_bank_code" type="xsd:string"/>
+          <xsd:element name="bank" type="xsd:string"/>
+          <xsd:element name="bank_address" type="xsd:string"/>
+          <xsd:element name="bank_url" type="xsd:string"/>
+          <xsd:element name="branch" type="xsd:string"/>
+          <xsd:element name="branch_code" type="xsd:string"/>
+          <xsd:element name="in_scl_directory" type="xsd:string"/>
+          <xsd:element name="sct" type="xsd:string"/>
+          <xsd:element name="sdd" type="xsd:string"/>
+          <xsd:element name="b2b" type="xsd:string"/>
+          <xsd:element name="account_number" type="xsd:string"/>
+          <xsd:element name="alternative_account_number" type="xsd:string"/>
+          <xsd:element name="account_validation_method" type="xsd:string"/>
+          <xsd:element name="account_validation" type="xsd:string"/>
+          <xsd:element name="length_check" type="xsd:string"/>
+          <xsd:element name="account_check" type="xsd:string"/>
+          <xsd:element name="bank_code_check" type="xsd:string"/>
+          <xsd:element name="bic_plausibility_check" type="xsd:string"/>
+          <xsd:element name="data_age" type="xsd:string"/>
+          <xsd:element name="IBANformat" type="xsd:string"/>
+          <xsd:element name="formatcomment" type="xsd:string"/>
+          <xsd:element name="balance" type="xsd:int"/>
+        </xsd:all>
+      </xsd:complexType>
+    </xsd:schema>
+  </types>
+  <message name="validate_ibanRequest">
+    <part name="iban" type="xsd:string"/>
+    <part name="user" type="xsd:string"/>
+    <part name="password" type="xsd:string"/>
+  </message>
+  <message name="validate_ibanResponse">
+    <part name="return" type="tns:IBANValResStruct"/>
+  </message>
+  <message name="calculate_ibanRequest">
+    <part name="country" type="xsd:string"/>
+    <part name="bankcode" type="xsd:string"/>
+    <part name="account" type="xsd:string"/>
+    <part name="user" type="xsd:string"/>
+    <part name="password" type="xsd:string"/>
+    <part name="bic" type="xsd:string"/>
+    <part name="legacy_mode" type="xsd:int"/>
+  </message>
+  <message name="calculate_ibanResponse">
+    <part name="return" type="tns:IBANCalcResStruct"/>
+  </message>
+  <message name="get_dutch_banksRequest">
+    <part name="user" type="xsd:string"/>
+    <part name="password" type="xsd:string"/>
+  </message>
+  <message name="get_dutch_banksResponse">
+    <part name="return" type="tns:BankResStruct"/>
+  </message>
+  <message name="get_swiss_banksRequest">
+    <part name="bank" type="xsd:string"/>
+    <part name="user" type="xsd:string"/>
+    <part name="password" type="xsd:string"/>
+  </message>
+  <message name="get_swiss_banksResponse">
+    <part name="return" type="tns:BankResStruct"/>
+  </message>
+  <message name="find_bankRequest">
+    <part name="searchterms" type="xsd:string"/>
+    <part name="country" type="xsd:string"/>
+    <part name="bankcode" type="xsd:string"/>
+    <part name="maxitems" type="xsd:int"/>
+    <part name="user" type="xsd:string"/>
+    <part name="password" type="xsd:string"/>
+  </message>
+  <message name="find_bankResponse">
+    <part name="return" type="tns:BankResStruct"/>
+  </message>
+  <message name="supported_countriesRequest">
+    <part name="supported_condition" type="xsd:string"/>
+    <part name="language" type="xsd:string"/>
+    <part name="user" type="xsd:string"/>
+    <part name="password" type="xsd:string"/>
+  </message>
+  <message name="supported_countriesResponse">
+    <part name="return" type="tns:CountryResStruct"/>
+  </message>
+  <message name="country_supportedRequest">
+    <part name="country" type="xsd:string"/>
+    <part name="user" type="xsd:string"/>
+    <part name="password" type="xsd:string"/>
+  </message>
+  <message name="country_supportedResponse">
+    <part name="return" type="tns:CountryResStruct"/>
+  </message>
+  <message name="get_formRequest">
+    <part name="params" type="tns:Map"/>
+    <part name="user" type="xsd:string"/>
+    <part name="password" type="xsd:string"/>
+  </message>
+  <message name="get_formResponse">
+    <part name="return" type="tns:Form"/>
+  </message>
+  <portType name="IBAN_CalculatorPortType">
+    <operation name="validate_iban">
+      <documentation><![CDATA[Validates the given IBAN. The user ID and password you need to pass with the request are the same you use for logging in as a premium user. This service is available to all premium users who have paid their subscription fee. For more details on the subscription model, see www.iban-bic.com.<br>
+Output fields are:<br>
+iban: the IBAN that was validated.<br>
+result: 'passed' or 'failed' - for a valid or invalid IBAN<br>
+return_code: a condensed representation of the results of various checks. Not all checks have necessarily been done (see the other fields to find out). The condensed representation is a number which is 0 if all supported checks were done and passed. Otherwise, it is the sum of one or more of the following numbers: 1=automatically appended a subaccount number; 2=account number does not contain a checksum; 4=did not check the checksum; 8=did not check the bank code; 32=warning: a subaccount number might need to be appended, but you need to check if this is really the case; 128=checksum error in account number; 256=bank code not found in directory; 512=wrong length for IBAN; 1024=wrong length for bank code; 2048=IBAN checksum error (digits 3 and 4); 4096=missing input data (such as country code); 8192=this country is not (yet?) supported.<br> This condensed return code can be used for a simple check such as: if the sum is less than 32, the result can be assumed to be correct; if it is in the range from 32 to 127, it might be correct but should be checked; if it is 128 or higher, there seems to be a more serious error. There is one exception to this rule: if it is 65536, this means that the return code is not set at all. This should not happen - please notify us if it does.<br>
+checks: an array of the checks performed (can contain elements such as 'length', 'bank_code', 'account_number', 'iban_checksum').<br>
+bic_candidates: an array of BICs that are associated with the given national bank code. May be empty or may contain one or more elements. The BICstruct element has the attributes bic, wwwcount, sampleurl, and city. If a wwwcount greater than zero is given, the BIC was harvested from the Web (and found on as many pages as indicated by wwwcount, for example at the URL given by sampleurl). If wwwcount is zero, the BIC comes from a national bank or the ECB. If city is given, this also indicates that the BIC comes from a national bank or the ECB. The given city does not necessarily reflect the location of the given branch - it can also be the location of the headquarters.<br>
+country: the ISO country code (first two letters of the IBAN)<br>
+bank_code: the national bank code. Part of the BIC for NL (where no national bank code exists).<br>
+bank: bank name, if known<br>
+bank_address: some address data, if known<br>
+bank_url: URL of website, if known<br>
+branch: branch name, if known<br>
+branch_code: branch code, if known<br>
+in_scl_directory: if at least one BIC is returned, this field is set to 'yes' or 'no', depending on whether the first returned BIC is listed in the German Bundesbank's SCL directory. If no BIC is returned, this field is left blank.<br>
+sct: if in_scl_directory is set to 'yes', this field is set to 'yes' if a SEPA Credit Transfer is supported for the first returned BIC. If no SCT is supported, the field is set to 'no'. If no BIC is returned, the field is left blank.<br>
+sdd: if in_scl_directory is set to 'yes', this field is set to 'yes' if SEPA Direct Debit is supported for the first returned BIC. If no SDD is supported, the field is set to 'no'. If no BIC is returned, the field is left blank.<br>
+b2b: if in_scl_directory is set to 'yes', this field is set to 'yes' if SEPA Business to Business is supported for the first returned BIC. If no B2B is supported, the field is set to 'no'. If no BIC is returned, the field is left blank.<br>
+account_number: the national bank account number<br>
+account_validation_method: name of the validation algorithm for the national account number<br>
+account_validation: for German or Swiss account numbers, an explanation (in German)<br>
+length_check: 'passed' or 'failed' - for the right number of characters for the given country<br>
+account_check (not provided for every country): 'passed' or 'failed' (checksum validation; if the algorithm is unknown, or if there is no checksum, the result is 'passed' or empty).<br>
+bank_code_check (not provided for every country): lookup of national bank code was successful ('passed') or not ('failed')<br>
+iban_checksum_check: 'passed' or 'failed' (correctness of the two digits right after the country code in the IBAN)<br>
+data_age (not given for all countries): age of the BIC and other bank-related data (not defined for data harvested from the Web). Format: yyyymmdd.<br>
+IBANformat: a string describing the IBAN format for the given country, for example: 'DEkk BBBB BBBB CCCC CCCC CC'.<br>
+formatcomment: an explanation of the IBANformat string, for example: 'B = sort code (BLZ), C = account No.'<br>
+balance: the number of remaining calculations you can do before having to recharge your account. This does not apply to customers with a subscription which includes an unlimited number of calculations.]]]]>><![CDATA[</documentation>
+      <input message="tns:validate_ibanRequest"/>
+      <output message="tns:validate_ibanResponse"/>
+    </operation>
+    <operation name="calculate_iban">
+      <documentation><![CDATA[Calculates an IBAN for the given national account number. The user ID and password you need to pass with the request are the same you use for logging in as a premium user. This service is available to all premium users who have paid their subscription fee. For more details on the subscription model, see www.iban-bic.com.<br>
+Parameters are:<br>
+country - the 2-letter ISO country code.<br>
+bankcode -  The national bank code (BC number for Switzerland). For the following countries, the whole national account number, including any bank codes and branch codes, should be passed with the account parameter, and the bankcode parameter should stay empty: IT, BE, ES, EE, SK, CZ, HU, LU, PL, FR, GR<br>
+account - the national account number<br>
+user - your unique user ID<br>
+password - your password<br>
+bic - the BIC (or at least a sufficiently long prefix) for GB, NL (GB: web crawl can be used, but does not provide all BICs. If the bic parameter is omitted, and the BIC is not found in the Web crawl, this will be shown with an error message in the output field result). This parameter is ignored for countries other than GB and NL.<br>
+legacy_mode: If set to 1 for Switzerland, the calculator does not use the external Java program provided by Swiss Interbank Clearing. This parameter has no effect for countries other than Switzerland. For Switzerland, the Java program validates account numbers, but is slower and requires all characters to be entered correctly (such as dots, hyphens etc.). The legacy mode is faster, but does not validate account numbers, and is less likely to produce correct results.<br><br>
+Output fields are:<br>
+result: 'passed' or 'failed' - for a valid or invalid account number/bank code/country combination<br>
+return_code: a condensed representation of the results of various checks. Not all checks have necessarily been done (see the other fields to find out). The condensed representation is a number which is 0 if all supported checks were done and passed. Otherwise, it is the sum of one or more of the following numbers: 1=automatically appended a subaccount number; 2=account number does not contain a checksum; 4=did not check the checksum; 8=did not check the bank code; 32=warning: a subaccount number might need to be appended, but you need to check if this is really the case; 128=checksum error in account number; 256=bank code not found in directory; 512=wrong length for account number; 1024=wrong length for bank code; 4096=missing input data (such as country code); 8192=this country is not (yet?) supported.<br> This condensed return code can be used for a simple check such as: if the sum is less than 32, the result can be assumed to be correct; if it is in the range from 32 to 127, it might be correct but should be checked; if it is 128 or higher, there seems to be a more serious error. There is one exception to this rule: if it is 65536, this means that the return code is not set at all. This should not happen - please notify us if it does.<br>
+iban: the calculated IBAN (if the national account number/bank code had the right length; an IBAN may be provided even if the account number validation fails.)<br>
+checks: an array of the checks performed (can contain elements such as 'length', 'bank_code', 'account_number').<br>
+bic_candidates: an array of BICs that are associated with the given national bank code. May be empty or may contain one or more elements. The bic element has the attributes bic, wwwcount, sampleurl, and city. If a wwwcount greater than zero is given, the BIC was harvested from the Web (and found on as many pages as indicated by wwwcount, for example on the page indicated by sampleurl). If wwwcount is zero, the BIC comes from a national bank or the ECB. If city is given, this also indicates that the BIC comes from a national bank or the ECB. The given city does not necessarily reflect the location of the given branch - it can also be the location of the headquarters.<br>
+country: the ISO country code (first two letters of the IBAN)<br>
+bank_code: the national bank code, if it exists. BIC for NL (where no national bank code exists), BC-Nummer for Switzerland. There are functions provided for obtaining Dutch BICs and Swiss BC numbers.<br>
+alternative_bank_code: very few banks embed a bank code in the IBAN that is different from the bank code communicated to clients. If this might be the case, this field is filled with the alternative possibility. Otherwise, it is empty.<br>
+bank: bank name, if known<br>
+bank_address: some address data, if known<br>
+bank_url: URL of website, if known<br>
+branch: branch name, if known<br>
+branch_code: branch code, if known<br>
+in_scl_directory: if at least one BIC is returned, this field is set to 'yes' or 'no', depending on whether the first returned BIC is listed in the German Bundesbank's SCL directory. If no BIC is returned, this field is left blank.<br>
+sct: if in_scl_directory is set to 'yes', this field is set to 'yes' if a SEPA Credit Transfer is supported for the first returned BIC. If no SCT is supported, the field is set to 'no'. If no BIC is returned, the field is left blank.<br>
+sdd: if in_scl_directory is set to 'yes', this field is set to 'yes' if SEPA Direct Debit is supported for the first returned BIC. If no SDD is supported, the field is set to 'no'. If no BIC is returned, the field is left blank.<br>
+b2b: if in_scl_directory is set to 'yes', this field is set to 'yes' if SEPA Business to Business is supported for the first returned BIC. If no B2B is supported, the field is set to 'no'. If no BIC is returned, the field is left blank.<br>
+account_number: the national bank account number<br>
+alternative_account_number: sometimes, a subaccount number needs to be appended to a German account number before it is embedded in an IBAN. If this is the case, the extended account number appears in this field.<br>
+account_validation_method: name of the validation algorithm for the national account number<br>
+account_validation: for German or Swiss account numbers, an explanation (in German)<br>
+length_check: 'passed', 'failed for bank code', or 'failed for account number' - for the right number of characters for the given country and account number/bank code<br>
+account_check (not provided for every country): 'passed' or 'failed'; for Germany also possible: passed after correction - in that case see alternative_account_number (checksum validation; if the algorithm is unknown, or if there is no checksum, the result is 'passed' or empty).<br>
+bank_code_check (not provided for every country): lookup of national bank code was successful ('passed') or not ('failed'); if an alternative bank code might be necessary for the IBAN, this information is added after the word 'passed' in this field.<br>
+bic_plausibility_check: NL only. Checks how often account numbers of the given bank actually have the given prefix. Since this does not guarantee anything, this check is ignored for the overall pass/fail decision that is reported in the result field. But for some Dutch banks, it can give you an idea of how likely it is that the right BIC was provided.<br>
+data_age (not given for all countries): age of the BIC and other bank-related data (not defined for data harvested from the Web). Format: yyyymmdd.<br>
+IBANformat: a string describing the IBAN format for the given country, for example: 'DEkk BBBB BBBB CCCC CCCC CC'.<br>
+formatcomment: an explanation of the IBANformat string, for example: 'B = sort code (BLZ), C = account No.'<br>
+balance: the number of remaining calculations you can do before having to recharge your account. This does not apply to customers with a subscription which includes an unlimited number of calculations.]]]]>><![CDATA[</documentation>
+      <input message="tns:calculate_ibanRequest"/>
+      <output message="tns:calculate_ibanResponse"/>
+    </operation>
+    <operation name="get_dutch_banks">
+      <documentation><![CDATA[Returns a list of Dutch banks and their BICs. <br>
+Dutch national account numbers do not contain reliable information about the bank. There is a bank code (of variable length) embedded in Dutch account numbers, but it is possible for bank clients to keep an account number when switching banks, and therefore there exist accounts where the bank code does not match the bank. When calculating a Dutch IBAN, you need to pass an account number and a BIC to the function calculate_iban; the BIC can be picked from the list which is returned by the function get_dutch_banks.<br>
+Output fields:<br>
+result: empty if everything is okay, otherwise an error message.<br>
+banks: an array of bank structs with the fields:<br>
+* name: the name of the bank.<br>
+* bic: the BIC.<br>
+* bankcode: this field is left empty for Dutch banks.<br>
+* address: this field is left empty.<br>
+balance: the number of remaining calculations you can do before having to recharge your account. This does not apply to customers with a subscription which includes an unlimited number of calculations.]]]]>><![CDATA[</documentation>
+      <input message="tns:get_dutch_banksRequest"/>
+      <output message="tns:get_dutch_banksResponse"/>
+    </operation>
+    <operation name="get_swiss_banks">
+      <documentation><![CDATA[Returns a list of Swiss banks and their BC numbers. <br>
+Due to the large number of BC numbers, this function needs to be used in two steps:<br>
+1. If called with an empty bank name, get_swiss_banks returns a list of all names of Swiss banks, but still without BC numbers.<br>
+2. If called with one of the bank names that were obtained in step 1, the function returns all BC numbers for the given bank.<br>
+Output fields:<br>
+result: empty if everything is okay, otherwise an error message.<br>
+banks: an array of bank structs with the fields:<br>
+* name: the name of the bank.<br>
+* bic: if the function was called with a non-empty bank name, the BIC. Otherwise, this field is left empty.<br>
+* bankcode: if the function was called with a non-empty bank name as first parameter, the bankcode field contains a BC number. Otherwise, it is empty.<br>
+* address: empty.<br>
+balance: the number of remaining calculations you can do before having to recharge your account. This does not apply to customers with a subscription which includes an unlimited number of calculations.]]]]>><![CDATA[</documentation>
+      <input message="tns:get_swiss_banksRequest"/>
+      <output message="tns:get_swiss_banksResponse"/>
+    </operation>
+    <operation name="find_bank">
+      <documentation><![CDATA[Given some search terms (one or more words separated by space characters), optionally the country code (can be empty if all countries should be searched), optionally the bankcode (can be emtpy if the bank code is part of what the user is looking for), the maximum number of items to return, and user ID/password, returns a list of matching banks with additional information (varying by country, this information can include: national bank code, bank name, bank address, and BIC). <br>
+Output fields:<br>
+result: empty if everything is okay, otherwise an error message.<br>
+banks: an array of bank structs with the fields:<br>
+* name: the name of the bank.<br>
+* bic: the BIC.<br>
+* bankcode: the national bank code.<br>
+* address: any address data we have about the bank.<br>
+balance: the number of remaining calculations you can do before having to recharge your account. This does not apply to customers with a subscription which includes an unlimited number of calculations.]]]]>><![CDATA[</documentation>
+      <input message="tns:find_bankRequest"/>
+      <output message="tns:find_bankResponse"/>
+    </operation>
+    <operation name="supported_countries">
+      <documentation><![CDATA[Input:<br/>
+- a condition for what you consider 'supported'. You may build an overall condition by combining various conditions with AND, OR, and parentheses. The following conditions are available:<br/>* IBAN: an IBAN is calculated and returned.<br/>* unique_BIC: if a BIC code exists, it is returned. Only one BIC code is returned in this case.<br/>* some_BICs: zero, one, or more BIC candidates may be returned. Countries which fulfil the condition 'unique_BIC' are considered to also fulfil 'some_BICs'.<br/>* name_based_BICs: zero, one, or more BIC candidates may be returned. Unlike 'some_BICs', these may have been picked based not on one BIC/bank code directory, but by combining two directories based on the bank names, which is slightly more error-prone. Countries which fulfil the condition 'some_BICs' are considered to also fulfil 'name_based_BICs'.<br/>* account_validated: if a checksum exists in an account number, it will be checked.<br/>* bankcode_validated: the bank code is validated by looking it up in a table of bank codes.<br/>If left blank, the default condition is 'IBAN AND some_BICs AND (account_validated OR bankcode_validated)'.<br/>- language: the desired language for the human-readable list of countries which will be returned.<br/> Returns "OK" in the "result" field if there was no error (or an error message otherwise), and a list of all supported countries both as a list of 2-digit country codes and as a list of human-readable country names.<br>]]]]>><![CDATA[</documentation>
+      <input message="tns:supported_countriesRequest"/>
+      <output message="tns:supported_countriesResponse"/>
+    </operation>
+    <operation name="country_supported">
+      <documentation>THIS IS A LEGACY FUNCTION. PLEASE DO NOT USE IT ANYMORE. USE supported_countries INSTEAD.&lt;br/>Input: a 2-digit country code (as it is used in IBANs). Returns "yes" or "no" as information about the specified country, and also a list of all supported countries as 2-digit country codes. Because you get the full list, you do not have to specify any country in the request. If you do not specify a country, this function still returns the list of all supported countries. &lt;br></documentation>
+      <input message="tns:country_supportedRequest"/>
+      <output message="tns:country_supportedResponse"/>
+    </operation>
+    <operation name="get_form">
+      <documentation><![CDATA[Input: params is an array of key-value-pairs. For the first call, it should contain something like this (in PHP notation): ("country"=>"DE", "language"=>0). The country should be given using the 2-letter notation which is also used for the IBANs. The desired language of the field labels should be given using the same numbers that you can see on iban-rechner.de when hovering over the language links on the top right (thus e. g. 0 for German).<br>
+This function returns an array of fields as well as the information whether another iteration is needed. The latter is given in the field "done" as "no" or "yes". Every field (element of the field array) has the properties:<br>id: an identifier.<br>type: hidden/text/select/submit/static for a hidden field, text edit field, drop-down box, submit button, or static text, respectively.<br>value: a value (possibly empty).<br>label: text which should be shown to the left of the field (or on it, if it happens to be a button).<br>optionids: an array of numerical IDs. This array has the same length as the "options" array (see below). One of these IDs should be returned if the corresponding item from the "options" array was chosen.<br>options: an array of strings containing the possible values for a drop-down box.<br>length: the maximum expected length of the value. A 0 should be interpreted as "not applicable" or "not specified".<br>newline: yes or no; it is suggested to place this field into the same row as the previous one if "newline" is no, and to start a new line otherwise.<br>
+If "done" is "no", this function should be called again. All fields which were returned in the previous call of get_form should be passed back to it as part of the array of key-value-pairs. For each such pair, the key should equal the "id" property of the field, and the value should equal either a user-supplied value (for editable fields) or the value which has been returned by get_form (for hidden or static fields).<br>
+If "done" is "yes", this means that now you can call the function calculate_iban; the list of returned fields now corresponds with the parameters of calculate_iban.
+<br>]]]]>><![CDATA[</documentation>
+      <input message="tns:get_formRequest"/>
+      <output message="tns:get_formResponse"/>
+    </operation>
+  </portType>
+  <binding name="IBAN_CalculatorBinding" type="tns:IBAN_CalculatorPortType">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="validate_iban">
+      <soap:operation soapAction="https://ssl.ibanrechner.de/#validate_iban" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="https://ssl.ibanrechner.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="https://ssl.ibanrechner.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="calculate_iban">
+      <soap:operation soapAction="https://ssl.ibanrechner.de/#calculate_iban" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="https://ssl.ibanrechner.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="https://ssl.ibanrechner.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="get_dutch_banks">
+      <soap:operation soapAction="https://ssl.ibanrechner.de/#get_dutch_banks" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="https://ssl.ibanrechner.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="https://ssl.ibanrechner.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="get_swiss_banks">
+      <soap:operation soapAction="https://ssl.ibanrechner.de/#get_swiss_banks" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="https://ssl.ibanrechner.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="https://ssl.ibanrechner.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="find_bank">
+      <soap:operation soapAction="https://ssl.ibanrechner.de/#find_bank" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="https://ssl.ibanrechner.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="https://ssl.ibanrechner.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="supported_countries">
+      <soap:operation soapAction="https://ssl.ibanrechner.de/#supported_countries" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="https://ssl.ibanrechner.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="https://ssl.ibanrechner.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="country_supported">
+      <soap:operation soapAction="https://ssl.ibanrechner.de/#country_supported" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="https://ssl.ibanrechner.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="https://ssl.ibanrechner.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+    <operation name="get_form">
+      <soap:operation soapAction="https://ssl.ibanrechner.de/#country_supported" style="rpc"/>
+      <input>
+        <soap:body use="encoded" namespace="https://ssl.ibanrechner.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="https://ssl.ibanrechner.de/" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="IBAN_Calculator">
+    <port name="IBAN_CalculatorPort" binding="tns:IBAN_CalculatorBinding">
+      <soap:address location="https://ssl.ibanrechner.de:443/soap-12-2/index.php"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://ssl.ibanrechner.de:443/soap-12-2/index.php</con:endpoint></con:endpoints><con:operation id="a9528745-6278-4d5a-9da5-7654b8b64afd" isOneWay="false" action="https://ssl.ibanrechner.de/#calculate_iban" name="calculate_iban" bindingOperationName="calculate_iban" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="3c3d6f0f-bb14-432e-9560-b0d1335112b6" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://ssl.ibanrechner.de:443/soap-12-2/index.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ssl="https://ssl.ibanrechner.de/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ssl:calculate_iban soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <country xsi:type="xsd:string">DE</country>\r
+         <bankcode xsi:type="xsd:string">37040044</bankcode>\r
+         <account xsi:type="xsd:string">0532013098</account>\r
+         <user xsi:type="xsd:string">aks</user>\r
+         <password xsi:type="xsd:string">qwerty</password>\r
+         <bic xsi:type="xsd:string">COBADEFFXXX</bic>\r
+         <legacy_mode xsi:type="xsd:int">1</legacy_mode>\r
+      </ssl:calculate_iban>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://ssl.ibanrechner.de/#calculate_iban"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="9b1a4f65-9d2b-4e49-adbd-e9609c7b455f" isOneWay="false" action="https://ssl.ibanrechner.de/#country_supported" name="country_supported" bindingOperationName="country_supported" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="6533ead5-10fc-47d3-a0c5-5c0cccf10e7e" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://ssl.ibanrechner.de:443/soap-12-2/index.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ssl="https://ssl.ibanrechner.de/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ssl:country_supported soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <country xsi:type="xsd:string"></country>\r
+         <user xsi:type="xsd:string">aks</user>\r
+         <password xsi:type="xsd:string">qwerty</password>\r
+      </ssl:country_supported>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://ssl.ibanrechner.de/#country_supported"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="079406e2-3b76-4ed7-b6ca-1759b0cdcf8e" isOneWay="false" action="https://ssl.ibanrechner.de/#find_bank" name="find_bank" bindingOperationName="find_bank" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="8275d8d4-ab61-4b80-a66a-638c18860e90" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://ssl.ibanrechner.de:443/soap-12-2/index.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ssl="https://ssl.ibanrechner.de/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ssl:find_bank soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <searchterms xsi:type="xsd:string">Deutsche</searchterms>\r
+         <country xsi:type="xsd:string">DE</country>\r
+         <bankcode xsi:type="xsd:string"></bankcode>\r
+         <maxitems xsi:type="xsd:int">10</maxitems>\r
+         <user xsi:type="xsd:string">aks</user>\r
+         <password xsi:type="xsd:string">qwerty</password>\r
+      </ssl:find_bank>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://ssl.ibanrechner.de/#find_bank"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="1a252020-ee10-458a-b47f-dabeda532bd9" isOneWay="false" action="https://ssl.ibanrechner.de/#get_dutch_banks" name="get_dutch_banks" bindingOperationName="get_dutch_banks" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d0efd72c-fc72-4e64-abd9-c8ffeae533c9" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://ssl.ibanrechner.de:443/soap-12-2/index.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ssl="https://ssl.ibanrechner.de/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ssl:get_dutch_banks soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <user xsi:type="xsd:string">aks</user>\r
+         <password xsi:type="xsd:string">qwerty</password>\r
+      </ssl:get_dutch_banks>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://ssl.ibanrechner.de/#get_dutch_banks"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="d322cbce-e7d5-44d6-8487-c23a08ddf388" isOneWay="false" action="https://ssl.ibanrechner.de/#country_supported" name="get_form" bindingOperationName="get_form" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="5fa74ad0-944a-44b4-ad15-0468a9cb1cd5" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://ssl.ibanrechner.de:443/soap-12-2/index.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ssl="https://ssl.ibanrechner.de/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ssl:get_form soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <params xsi:type="ssl:Map" soapenc:arrayType="ssl:item[]"/>\r
+         <user xsi:type="xsd:string">?</user>\r
+         <password xsi:type="xsd:string">?</password>\r
+      </ssl:get_form>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://ssl.ibanrechner.de/#country_supported"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="b3c13f4f-4596-4d31-910d-8aa15b76e382" isOneWay="false" action="https://ssl.ibanrechner.de/#get_swiss_banks" name="get_swiss_banks" bindingOperationName="get_swiss_banks" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="7808aef7-8715-41be-ad53-ea9c6a79174f" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://ssl.ibanrechner.de:443/soap-12-2/index.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ssl="https://ssl.ibanrechner.de/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ssl:get_swiss_banks soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <bank xsi:type="xsd:string">Raiffeisen</bank>\r
+         <user xsi:type="xsd:string">aks</user>\r
+         <password xsi:type="xsd:string">qwerty</password>\r
+      </ssl:get_swiss_banks>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://ssl.ibanrechner.de/#get_swiss_banks"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="83ae85be-40c0-4525-895b-46b161cbf14f" isOneWay="false" action="https://ssl.ibanrechner.de/#supported_countries" name="supported_countries" bindingOperationName="supported_countries" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="54d6aae4-8ffa-4427-8e91-b549507285b0" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://ssl.ibanrechner.de:443/soap-12-2/index.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ssl="https://ssl.ibanrechner.de/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ssl:supported_countries soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <supported_condition xsi:type="xsd:string">?</supported_condition>\r
+         <language xsi:type="xsd:string">1</language>\r
+         <user xsi:type="xsd:string">aks</user>\r
+         <password xsi:type="xsd:string">qwerty</password>\r
+      </ssl:supported_countries>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://ssl.ibanrechner.de/#supported_countries"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="24370e1c-11e2-476a-98e2-d4354eebf88a" isOneWay="false" action="https://ssl.ibanrechner.de/#validate_iban" name="validate_iban" bindingOperationName="validate_iban" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="74a2f1f4-91e7-4f7b-9944-7c29a3000851" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://ssl.ibanrechner.de:443/soap-12-2/index.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ssl="https://ssl.ibanrechner.de/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ssl:validate_iban soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <iban xsi:type="xsd:string">?</iban>\r
+         <user xsi:type="xsd:string">?</user>\r
+         <password xsi:type="xsd:string">?</password>\r
+      </ssl:validate_iban>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://ssl.ibanrechner.de/#validate_iban"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="47111c48-54e8-4354-94cf-00dc4668c2db" name="iban TS"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="52189ed1-63cb-4f89-bf62-217dc0aac361" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ibn TC" searchProperties="true"><con:settings/><con:testStep type="request" id="12f0b1aa-d820-4b9c-bbae-0e63a0a2e193" name="supported_countries - Request 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>IBAN_CalculatorBinding</con:interface><con:operation>supported_countries</con:operation><con:request name="supported_countries - Request 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="3c912ec3-6fe7-415e-8d8d-06e7422016d3"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://ssl.ibanrechner.de:443/soap-12-2/index.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ssl="https://ssl.ibanrechner.de/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ssl:supported_countries soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\r
+         <supported_condition xsi:type="xsd:string">iban</supported_condition>\r
+         <language xsi:type="xsd:string">5</language>\r
+         <user xsi:type="xsd:string">liba003</user>\r
+         <password xsi:type="xsd:string">liba003</password>\r
+      </ssl:supported_countries>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="aa14406b-ef34-403c-9c75-28947924eba1" name="SOAP Response"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://ssl.ibanrechner.de/#supported_countries"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="Property Transfer" id="be724a55-d45c-446e-ac1f-f81ee14fb25c"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>Countries</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>supported_countries - Request 1</con:sourceStep><con:sourcePath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='https://ssl.ibanrechner.de/';
+//item[17]/text()</con:sourcePath><con:targetType>Request</con:targetType><con:targetStep>find_bank - Request 1</con:targetStep><con:targetPath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='https://ssl.ibanrechner.de/';
+//country/text()
+</con:targetPath><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" id="c0c3f56d-a852-4f19-a99f-cde6f95c0403" name="find_bank - Request 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>IBAN_CalculatorBinding</con:interface><con:operation>find_bank</con:operation><con:request name="find_bank - Request 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="4068067c-09e8-4d3c-80a5-d23860b474aa"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://ssl.ibanrechner.de:443/soap-12-2/index.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ssl="https://ssl.ibanrechner.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ssl:find_bank soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <searchterms xsi:type="xsd:string">Bank</searchterms>
+         <country xsi:type="xsd:string">DE</country>
+         <bankcode xsi:type="xsd:string"/>
+         <maxitems xsi:type="xsd:int">10</maxitems>
+         <user xsi:type="xsd:string">liba003</user>
+         <password xsi:type="xsd:string">liba003</password>
+      </ssl:find_bank>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="f3901c29-0e52-4ac6-88f1-a7a7dee7f691" name="SOAP Response"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://ssl.ibanrechner.de/#find_bank"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="CIban" id="86b034b3-d39a-4c1d-adec-f7c388b81af8"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>Calculate</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>find_bank - Request 1</con:sourceStep><con:sourcePath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='https://ssl.ibanrechner.de/';
+//item[1]/bankcode/text()</con:sourcePath><con:targetType>Request</con:targetType><con:targetStep>calculate_iban - Request 1</con:targetStep><con:targetPath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='https://ssl.ibanrechner.de/';
+//bankcode/text()</con:targetPath><con:upgraded>true</con:upgraded></con:transfers><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>bicCode</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>find_bank - Request 1</con:sourceStep><con:sourcePath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='https://ssl.ibanrechner.de/';
+//item[1]/bic/text()</con:sourcePath><con:targetType>Request</con:targetType><con:targetStep>calculate_iban - Request 1</con:targetStep><con:targetPath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='https://ssl.ibanrechner.de/';
+//bic/text()</con:targetPath><con:upgraded>true</con:upgraded></con:transfers><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>Country</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>find_bank - Request 1</con:sourceStep><con:sourcePath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='https://ssl.ibanrechner.de/';
+//item[1]/country/text()</con:sourcePath><con:targetType>Request</con:targetType><con:targetStep>calculate_iban - Request 1</con:targetStep><con:targetPath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='https://ssl.ibanrechner.de/';
+//country/text()</con:targetPath><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" id="e25d6561-4ab1-4fab-afbd-14b2477673e4" name="calculate_iban - Request 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>IBAN_CalculatorBinding</con:interface><con:operation>calculate_iban</con:operation><con:request name="calculate_iban - Request 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="dfe9697e-22b1-4c93-a638-06107f6e7abf"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://ssl.ibanrechner.de:443/soap-12-2/index.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ssl="https://ssl.ibanrechner.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ssl:calculate_iban soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <country xsi:type="xsd:string">DE</country>
+         <bankcode xsi:type="xsd:string">37021100</bankcode>
+         <account xsi:type="xsd:string">0532013098</account>
+         <user xsi:type="xsd:string">liba003</user>
+         <password xsi:type="xsd:string">liba003</password>
+         <bic xsi:type="xsd:string">MAZDDED1XXX</bic>
+         <legacy_mode xsi:type="xsd:int">1</legacy_mode>
+      </ssl:calculate_iban>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="c3764811-db57-4549-b7f7-915147194fab" name="SOAP Response"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://ssl.ibanrechner.de/#calculate_iban"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="transfer" name="valIBAN" id="dccf03ca-08e7-4030-b254-3d2b635ee936"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false"><con:name>IBANno</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>calculate_iban - Request 1</con:sourceStep><con:sourcePath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='https://ssl.ibanrechner.de/';
+//iban/text()</con:sourcePath><con:targetType>Request</con:targetType><con:targetStep>validate_iban - Request 1</con:targetStep><con:targetPath>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns1='https://ssl.ibanrechner.de/';
+//iban/text()</con:targetPath><con:upgraded>true</con:upgraded></con:transfers></con:config></con:testStep><con:testStep type="request" id="913949b9-2a84-4130-9b36-33dfd296c261" name="validate_iban - Request 1"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>IBAN_CalculatorBinding</con:interface><con:operation>validate_iban</con:operation><con:request name="validate_iban - Request 1" outgoingWss="" incomingWss="" timeout="" sslKeystore="" useWsAddressing="false" useWsReliableMessaging="false" wssPasswordType="" id="ff353713-bdc2-4df5-aa51-2c8b20bda7b1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://ssl.ibanrechner.de:443/soap-12-2/index.php</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ssl="https://ssl.ibanrechner.de/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ssl:validate_iban soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <iban xsi:type="xsd:string">DE17370211000532013098</iban>
+         <user xsi:type="xsd:string">liba003</user>
+         <password xsi:type="xsd:string">liba003</password>
+      </ssl:validate_iban>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="3bb398b9-a7e0-455c-b4d9-d08c9fe1813d" name="SOAP Response"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://ssl.ibanrechner.de/#validate_iban"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
